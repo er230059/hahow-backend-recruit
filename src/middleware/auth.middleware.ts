@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { HahowService } from 'src/hahow/hahow.service';
+import { HahowService } from '../hahow/hahow.service';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {

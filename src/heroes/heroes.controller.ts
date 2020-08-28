@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Req } from '@nestjs/common';
-import { ExtendedRequest } from 'src/type/extended-request.type';
+import { ExtendedRequest } from '../type/extended-request.type';
 import { HeroesService } from './heroes.service';
 
 @Controller('heroes')

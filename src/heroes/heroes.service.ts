@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { HahowService } from 'src/hahow/hahow.service';
+import { HahowService } from '../hahow/hahow.service';
 
 @Injectable()
 export class HeroesService {
