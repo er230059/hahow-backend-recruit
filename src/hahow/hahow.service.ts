@@ -1,4 +1,4 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
@@ -18,13 +18,21 @@ export class HahowService {
       .then(response => response.data);
   }
 
-  public getHero(
+  public async getHero(
     heroId: string,
   ): Promise<{ id: string; name: string; image: string }> {
-    return this.httpService
+    const data = await this.httpService
       .get(`${this.hahowHost}/heroes/${heroId}`)
       .toPromise()
       .then(response => response.data);
+
+    // This api sometime return abnormal result: { "code": 1000, "message": "Backend error" }
+    if (data.code) {
+      Logger.log(`getHero error: ${JSON.stringify(data)}`, 'HahowService');
+      throw new Error('Hahow API error');
+    }
+
+    return data;
   }
 
   public getProfileOfHero(
